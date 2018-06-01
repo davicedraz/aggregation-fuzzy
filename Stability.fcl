@@ -1,0 +1,90 @@
+
+FUNCTION_BLOCK tipper	// Block definition (there may be more than one block per file)
+
+VAR_INPUT				// Define input variables
+	RDEn : REAL;
+	RoV  : REAL;
+	CogC : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variable
+	STIFM : REAL;
+END_VAR
+
+FUZZIFY RDEn // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (0.7, 1) (1.3, 0) ; 
+	TERM med := (0.7, 0) (1.3, 1) (1.9, 0);
+	TERM high := (1.3, 0) (1.9, 1) (10,1);
+END_FUZZIFY
+
+FUZZIFY RoV // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (1, 1) (3, 0) ; 
+	TERM med := (1, 0) (3, 1) (5, 0);
+	TERM high := (3, 0) (5, 1) (10, 1);
+END_FUZZIFY
+
+FUZZIFY CogC // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (0, 1) (4.5, 0) ; 
+	TERM med := (0, 0) (4.5, 1) (9.5, 0);
+	TERM high := (4.5, 0) (9.5, 1) (10, 1);
+END_FUZZIFY
+
+
+
+DEFUZZIFY STIFM			// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+
+	TERM verylow := (0,1) (0.9,1) (1,0);
+	TERM low := (1,0) (1.5,1) (2,0);
+	TERM med := (2,0) (3,1) (4,0);
+	TERM high := (4,0) (5,1) (6,0);
+	TERM veryhigh := (6,0) (6.1,1) (10,1);
+
+	TERM verylow := (0,1) (1.9,1) (2,0);
+	TERM low := (2,0) (2.5,1) (3,0);
+	TERM med := (3,0) (3.5,1) (4,0);
+	TERM high := (4,0) (4.5,1) (5,0);
+	TERM veryhigh := (5,0) (5.1,1) (10,1);
+
+
+
+	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+//	AND : MIN;			// Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+	ACT : MIN;			// Use 'min' activation method
+	ACCU : MAX;			// Use 'max' accumulation method
+
+	RULE 1 : IF RDEn IS low AND RoV IS low AND CogC IS low THEN STIFM IS veryhigh;
+	RULE 2 : IF RDEn IS low AND RoV IS low AND CogC IS med THEN STIFM IS high;
+	RULE 3 : IF RDEn IS low AND RoV IS low AND CogC IS high THEN STIFM IS med;
+	RULE 4 : IF RDEn IS low AND RoV IS med AND CogC IS low THEN STIFM IS high;
+	RULE 5 : IF RDEn IS low AND RoV IS med AND CogC IS med THEN STIFM IS high;
+	RULE 6 : IF RDEn IS low AND RoV IS med AND CogC IS high THEN STIFM IS med;
+	RULE 7 : IF RDEn IS low AND RoV IS high AND CogC IS low THEN STIFM IS med;
+	RULE 8 : IF RDEn IS low AND RoV IS high AND CogC IS med THEN STIFM IS med;
+	RULE 9 : IF RDEn IS low AND RoV IS high AND CogC IS high THEN STIFM IS low;
+	RULE 10 : IF RDEn IS med AND RoV IS low AND CogC IS low THEN STIFM IS high;
+	RULE 11 : IF RDEn IS med AND RoV IS low AND CogC IS med THEN STIFM IS med;
+	RULE 12 : IF RDEn IS med AND RoV IS low AND CogC IS high THEN STIFM IS med;
+	RULE 13 : IF RDEn IS med AND RoV IS med AND CogC IS low THEN STIFM IS med;
+	RULE 14 : IF RDEn IS med AND RoV IS med AND CogC IS med THEN STIFM IS med;
+	RULE 15 : IF RDEn IS med AND RoV IS med AND CogC IS high THEN STIFM IS med;
+	RULE 16 : IF RDEn IS med AND RoV IS high AND CogC IS low THEN STIFM IS med;
+	RULE 17 : IF RDEn IS med AND RoV IS high AND CogC IS med THEN STIFM IS med;
+	RULE 18 : IF RDEn IS med AND RoV IS high AND CogC IS high THEN STIFM IS verylow;
+	RULE 19 : IF RDEn IS high AND RoV IS low AND CogC IS low THEN STIFM IS med;
+	RULE 20 : IF RDEn IS high AND RoV IS low AND CogC IS med THEN STIFM IS med;
+	RULE 21 : IF RDEn IS high AND RoV IS low AND CogC IS high THEN STIFM IS med;
+	RULE 22 : IF RDEn IS high AND RoV IS med AND CogC IS low THEN STIFM IS med;
+	RULE 23 : IF RDEn IS high AND RoV IS med AND CogC IS med THEN STIFM IS low;
+	RULE 24 : IF RDEn IS high AND RoV IS med AND CogC IS high THEN STIFM IS low;
+	RULE 25 : IF RDEn IS high AND RoV IS high AND CogC IS low THEN STIFM IS low;
+	RULE 26 : IF RDEn IS high AND RoV IS high AND CogC IS med THEN STIFM IS verylow;
+	RULE 27 : IF RDEn IS high AND RoV IS high  AND CogC IS high THEN STIFM IS verylow;
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

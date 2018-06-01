@@ -1,0 +1,91 @@
+
+FUNCTION_BLOCK tipper	// Block definition (there may be more than one block per file)
+
+VAR_INPUT				// Define input variables
+	NM : REAL;
+	FoC  : REAL;
+	NF : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variable
+	FIFM : REAL;
+END_VAR
+
+FUZZIFY NM // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (0.5, 1) (7.5, 0) ; 
+	TERM med := (0.5, 0) (7.5, 1) (15.5, 0);
+	TERM high := (7.5, 0) (15.5, 1) (100,1);
+END_FUZZIFY
+
+FUZZIFY FoC // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (0, 1) (0.24, 0) ; 
+	TERM med := (0, 0) (0.24, 1) (0.48, 0);
+	TERM high := (0.24, 0) (0.48, 1) (1, 1);
+END_FUZZIFY
+
+FUZZIFY NF // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (2.5, 1) (27.5, 0); 
+	TERM med := (2.5,0) (27.5, 1) (52.5, 0);
+	TERM high := (27.5, 0) (52.5, 1) (100, 1);
+END_FUZZIFY
+
+
+
+DEFUZZIFY FIFM			// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+
+//	TERM verylow := (0,1) (9,1) (10,0);
+//	TERM low := (10,0) (12.5, 1) (15,0);
+//	TERM med := (15,0) (25, 1) (35,0);
+//	TERM high := (35,0) (42.5, 1) (50,0);
+//	TERM veryhigh := (50,0) (51,1) (100,1);
+
+//	TERM verylow := (0,1) (9,1) (10,0);
+//	TERM low := (10,0) (15, 1) (20,0);
+//	TERM med := (20,0) (27.5, 1) (35,0);
+//	TERM high := (35,0) (42.5, 1) (50,0);
+//	TERM veryhigh := (50,0) (51,1) (100,1);
+	
+	TERM verylow := (0,1) (9,1) (10,0);
+	TERM low := (10,0) (17.5, 1) (25,0);
+	TERM med := (25,0) (32.5, 1) (40,0);
+	TERM high := (40,0) (47.5, 1) (55,0);
+	TERM veryhigh := (55,0) (56,1) (100,1);
+
+
+	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+//	AND : MIN;			// Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+	ACT : MIN;			// Use 'min' activation method
+	ACCU : MAX;			// Use 'max' accumulation method
+
+	RULE 1 : IF NM IS low AND FoC IS low AND NF IS low THEN FIFM IS low;
+	RULE 2 : IF NM IS low AND FoC IS med AND NF IS low THEN FIFM IS med;
+	RULE 3 : IF NM IS low AND FoC IS med AND NF IS med THEN FIFM IS med;
+	RULE 4 : IF NM IS low AND FoC IS high AND NF IS low THEN FIFM IS veryhigh;
+	RULE 5 : IF NM IS low AND FoC IS high AND NF IS med THEN FIFM IS veryhigh;
+	RULE 6 : IF NM IS low AND FoC IS high AND NF IS high THEN FIFM IS veryhigh;
+	RULE 7 : IF NM IS med AND FoC IS low AND NF IS low THEN FIFM IS low;
+	RULE 8 : IF NM IS med AND FoC IS low AND NF IS med THEN FIFM IS low;
+	RULE 9 : IF NM IS med AND FoC IS med AND NF IS low THEN FIFM IS med;
+	RULE 10 : IF NM IS med AND FoC IS med AND NF IS med THEN FIFM IS med;
+	RULE 11 : IF NM IS med AND FoC IS high AND NF IS low THEN FIFM IS med;
+	RULE 12 : IF NM IS med AND FoC IS high AND NF IS med THEN FIFM IS high;
+	RULE 13 : IF NM IS med AND FoC IS high AND NF IS high THEN FIFM IS high;
+	RULE 14 : IF NM IS high AND FoC IS low AND NF IS low THEN FIFM IS verylow;
+	RULE 15 : IF NM IS high AND FoC IS low AND NF IS med THEN FIFM IS verylow;
+	RULE 16 : IF NM IS high AND FoC IS low AND NF IS high THEN FIFM IS verylow;
+	RULE 17 : IF NM IS high AND FoC IS med AND NF IS low THEN FIFM IS med;
+	RULE 18 : IF NM IS high AND FoC IS med AND NF IS med THEN FIFM IS med;
+	RULE 19 : IF NM IS high AND FoC IS med AND NF IS high THEN FIFM IS med;
+	RULE 20 : IF NM IS high AND FoC IS high AND NF IS low THEN FIFM IS high;
+	RULE 21 : IF NM IS high AND FoC IS high AND NF IS med THEN FIFM IS high;
+	RULE 22 : IF NM IS high AND FoC IS high AND NF IS high THEN FIFM IS high;
+
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+

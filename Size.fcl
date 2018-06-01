@@ -1,0 +1,68 @@
+
+FUNCTION_BLOCK tipper	// Block definition (there may be more than one block per file)
+
+VAR_INPUT				// Define input variables
+	DTMax : REAL;
+	NLeaf  : REAL;
+	NF : REAL;
+END_VAR
+
+VAR_OUTPUT				// Define output variable
+	SIFM : REAL;
+END_VAR
+
+FUZZIFY DTMax // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (2, 1) (4, 0) ; 
+	TERM med := (2, 0) (4, 1) (6, 0);
+	TERM high := (4, 0) (6, 1) (50, 1);
+END_FUZZIFY
+
+FUZZIFY NLeaf // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (1, 1) (19, 0) ; 
+	TERM med := (1, 0) (19, 1) (37, 0);
+	TERM high := (19, 0) (37, 1) (100, 1);
+END_FUZZIFY
+
+FUZZIFY NF // Fuzzify input variable 'service': {'poor', 'good' , 'excellent'}
+	TERM low := (0, 1) (2.5, 1) (27.5, 0) ; 
+	TERM med := (2.5, 0) (27.5, 1) (52.5, 0);
+	TERM high := (27.5, 0) (52.5, 1) (100, 1);
+END_FUZZIFY
+
+
+
+DEFUZZIFY SIFM			// Defzzzify output variable 'tip' : {'cheap', 'average', 'generous' }
+
+	TERM verylow := (0,1) (9,1) (10,0);
+	TERM low := (10,0) (15,1) (20,0);
+	TERM med := (20,0) (30,1) (40,0);
+	TERM high := (40,0) (45.5,1) (51,0);
+	TERM veryhigh := (51,0) (62,1) (100,1);
+
+	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
+	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+END_DEFUZZIFY
+
+RULEBLOCK No1
+//	AND : MIN;			// Use 'min' for 'and' (also implicit use 'max' for 'or' to fulfill DeMorgan's Law)
+	ACT : MIN;			// Use 'min' activation method
+	ACCU : MAX;			// Use 'max' accumulation method
+
+		RULE 1 : IF DTMax IS low AND NLeaf IS low AND NF IS low THEN SIFM IS verylow;
+		RULE 2 : IF DTMax IS med AND NLeaf IS low AND NF IS low THEN SIFM IS low;
+		RULE 3 : IF DTMax IS low AND NLeaf IS med AND NF IS low THEN SIFM IS low;
+		RULE 4 : IF DTMax IS low AND NLeaf IS low AND NF IS med THEN SIFM IS low;
+		RULE 4 : IF DTMax IS high AND NLeaf IS low AND NF IS low THEN SIFM IS low;
+		RULE 6 : IF DTMax IS low AND NLeaf IS med AND NF IS med THEN SIFM IS med;
+		RULE 7 : IF DTMax IS med AND NLeaf IS low AND NF IS med THEN SIFM IS med;
+		RULE 8 : IF DTMax IS med AND NLeaf IS med AND NF IS med THEN SIFM IS med;
+		RULE 9 : IF DTMax IS high AND NLeaf IS med AND NF IS med THEN SIFM IS med;
+		RULE 10 : IF DTMax IS med AND NLeaf IS high AND NF IS med THEN SIFM IS high;
+		RULE 11 : IF DTMax IS med AND NLeaf IS high AND NF IS high THEN SIFM IS high;
+		RULE 10 : IF DTMax IS high AND NLeaf IS high AND NF IS high THEN SIFM IS veryhigh;
+
+
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+
