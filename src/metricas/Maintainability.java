@@ -8,6 +8,7 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class Maintainability {
 
+	
 	public static void main(String[] args) throws Exception{
 		String filename = "Maintainability.fcl";
 
@@ -27,19 +28,20 @@ public class Maintainability {
 
 		fb.setVariable("NF", 22);
 		fb.setVariable("NM", 2);
-		//fb.setVariable("NTop", 5);
+		//fb.setVariable("NTop", );
 		fb.setVariable("NLeaf", 15);
 		fb.setVariable("DTMax", 5);
 		fb.setVariable("CogC", 5);
-		//fb.setVariable("FEX", 22);
+		//fb.setVariable("FEX", );
 		fb.setVariable("FoC", 0.227272727272727);
-		//fb.setVariable("SCDF", 5);
-		//fb.setVariable("MCDF", 2);
+		//fb.setVariable("SCDF", );
+		//fb.setVariable("MCDF", );
 		fb.setVariable("RDEn", 1.66666666666667);
 		fb.setVariable("RoV", 2.16666666666667);
-		//fb.setVariable("NVC", 966);
-		//fb.setVariable("NGOr", 1);
-		//fb.setVariable("NGXOr", 4);
+		//fb.setVariable("NVC", );
+		//fb.setVariable("NGOr", );
+		//fb.setVariable("NGXOr", );
+
 
 		// Evaluate
 		fb.evaluate();
