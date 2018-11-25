@@ -8,7 +8,6 @@ import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class Maintainability {
 
-	
 	public static void main(String[] args) throws Exception{
 		String filename = "Maintainability.fcl";
 
@@ -28,20 +27,19 @@ public class Maintainability {
 
 		fb.setVariable("NF", 22);
 		fb.setVariable("NM", 2);
-		//fb.setVariable("NTop", );
+		fb.setVariable("NTop", 11);
 		fb.setVariable("NLeaf", 15);
 		fb.setVariable("DTMax", 5);
 		fb.setVariable("CogC", 5);
-		//fb.setVariable("FEX", );
+		fb.setVariable("FEX", 8);
 		fb.setVariable("FoC", 0.227272727272727);
-		//fb.setVariable("SCDF", );
-		//fb.setVariable("MCDF", );
-		fb.setVariable("RDEn", 1.66666666666667);
+		fb.setVariable("SCDF", 6);
+		fb.setVariable("MCDF", 2);
+		fb.setVariable("RDen", 1.66666666666667);
 		fb.setVariable("RoV", 2.16666666666667);
-		//fb.setVariable("NVC", );
-		//fb.setVariable("NGOr", );
-		//fb.setVariable("NGXOr", );
-
+		fb.setVariable("NVC", 28);
+		fb.setVariable("NGOr", 2);
+		fb.setVariable("NGXOr", 3);
 
 		// Evaluate
 		fb.evaluate();
@@ -51,14 +49,14 @@ public class Maintainability {
 
 		// Print ruleSet
 		System.out.println(fb);
-		System.out.println("Tip: " + fb.getVariable("MIFM").getValue());
+		System.out.println(fb.getVariable("MIFM").getValue());
 
 		// Show each rule (and degree of support)
-		for( Rule r : fis.getFunctionBlock("tipper").getFuzzyRuleBlock("No1").getRules() )
+		for( Rule r : fis.getFunctionBlock("maitainability_index").getFuzzyRuleBlock("No1").getRules() )
 			System.out.println(r);
 
-		Variable tip = fb.getVariable("MIFM");
-		JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+		Variable newMeasure = fb.getVariable("MIFM");
+		JFuzzyChart.get().chart(newMeasure, newMeasure.getDefuzzifier(), true);
 
 	}
 
