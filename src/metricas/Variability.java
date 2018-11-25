@@ -24,9 +24,23 @@ public class Variability {
 		
 		// Set inputs
 
-		fb.setVariable("NF", 49);
-		fb.setVariable("NM", 17);
-		fb.setVariable("FoC", 0.14);
+		System.out.println("Smart-phone");
+		
+		//fb.setVariable("NF", 22);
+		fb.setVariable("NM", 2);
+		//fb.setVariable("NTop", 11);
+		//fb.setVariable("NLeaf", 15);
+		//fb.setVariable("DTMax", 5);
+		//fb.setVariable("CogC", 5);
+		fb.setVariable("FEX", 8);
+		//fb.setVariable("FoC", 0.227272727272727);
+		fb.setVariable("SCDF", 6);
+		fb.setVariable("MCDF", 2);
+		//fb.setVariable("RDen", 1.66666666666667);
+		fb.setVariable("RoV", 2.16666666666667);
+		fb.setVariable("NVC", 28);
+		fb.setVariable("NGOr", 2);
+		fb.setVariable("NGXOr", 3);
 
 		// Evaluate
 		fb.evaluate();
