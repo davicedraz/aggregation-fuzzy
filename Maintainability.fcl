@@ -1,4 +1,4 @@
-FUNCTION_BLOCK maitainability_index	// Block definition (there may be more than one block per file)
+FUNCTION_BLOCK maintainability_index
 
 VAR_INPUT				// Define input measures
 	NF : REAL;
@@ -113,7 +113,7 @@ FUZZIFY NGXOr // Fuzzify input measure in : {'low', 'med' , 'high'}
 END_FUZZIFY
 
 
-DEFUZZIFY MIFM		// Defuzzify output variable 'Complexity Index' : {'very low', 'low', 'med', 'high', 'very high' }
+DEFUZZIFY MIFM		// Defuzzify output measure 'Maintainability Index' : {'very low', 'low', 'med', 'high', 'very high' }
 	
 	TERM verylow := (0,1) (9,1) (10,0);
 	TERM low := (10,0) (17.5, 1) (25,0);
@@ -121,15 +121,15 @@ DEFUZZIFY MIFM		// Defuzzify output variable 'Complexity Index' : {'very low', '
 	TERM high := (40,0) (47.5, 1) (55,0);
 	TERM veryhigh := (55,0) (56,1) (100,1);
 
-	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
-	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+	METHOD : COG;		
+	DEFAULT := 0;		
 	
 END_DEFUZZIFY
 
 RULEBLOCK size_rules
 
-	ACT : MIN;			// Use 'min' activation method
-	ACCU : MAX;			// Use 'max' accumulation method
+	ACT : MIN;			
+	ACCU : MAX;			
 
 	RULE 1 : IF DTMax IS low AND NLeaf IS low AND NF IS low THEN MIFM IS verylow;
 	RULE 2 : IF DTMax IS med AND NLeaf IS low AND NF IS low THEN MIFM IS low;
