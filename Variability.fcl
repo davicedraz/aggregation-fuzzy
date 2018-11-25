@@ -66,7 +66,6 @@ FUZZIFY NGOr // Fuzzify input measure in : {'low', 'med' , 'high'}
 END_FUZZIFY
 
 
-
 DEFUZZIFY VIFM	 // Defuzzify output variable 'Complexity Index' : {'very low', 'low', 'med', 'high', 'very high' }
 	
 	TERM verylow := (0,1) (9,1) (11,0);
@@ -86,28 +85,44 @@ RULEBLOCK No1
 	ACCU : MAX;		
 		
 	RULE 1 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN VIFM IS veryhigh;
-//	RULE 1 : IF NM IS low AND FoC IS low AND NF IS low THEN VIFM IS low;
-//	RULE 2 : IF NM IS low AND FoC IS med AND NF IS low THEN VIFM IS med;
-//	RULE 3 : IF NM IS low AND FoC IS med AND NF IS med THEN VIFM IS med;
-//	RULE 4 : IF NM IS low AND FoC IS high AND NF IS low THEN VIFM IS veryhigh;
-//	RULE 5 : IF NM IS low AND FoC IS high AND NF IS med THEN VIFM IS veryhigh;
-//	RULE 6 : IF NM IS low AND FoC IS high AND NF IS high THEN VIFM IS veryhigh;
-//	RULE 7 : IF NM IS med AND FoC IS low AND NF IS low THEN VIFM IS low;
-//	RULE 8 : IF NM IS med AND FoC IS low AND NF IS med THEN VIFM IS low;
-//	RULE 9 : IF NM IS med AND FoC IS med AND NF IS low THEN VIFM IS med;
-//	RULE 10 : IF NM IS med AND FoC IS med AND NF IS med THEN VIFM IS med;
-//	RULE 11 : IF NM IS med AND FoC IS high AND NF IS low THEN VIFM IS med;
-//	RULE 12 : IF NM IS med AND FoC IS high AND NF IS med THEN VIFM IS high;
-//	RULE 13 : IF NM IS med AND FoC IS high AND NF IS high THEN VIFM IS high;
-//	RULE 14 : IF NM IS high AND FoC IS low AND NF IS low THEN VIFM IS verylow;
-//	RULE 15 : IF NM IS high AND FoC IS low AND NF IS med THEN VIFM IS verylow;
-//	RULE 16 : IF NM IS high AND FoC IS low AND NF IS high THEN VIFM IS verylow;
-//	RULE 17 : IF NM IS high AND FoC IS med AND NF IS low THEN VIFM IS med;
-//	RULE 18 : IF NM IS high AND FoC IS med AND NF IS med THEN VIFM IS med;
-//	RULE 19 : IF NM IS high AND FoC IS med AND NF IS high THEN VIFM IS med;
-//	RULE 20 : IF NM IS high AND FoC IS high AND NF IS low THEN VIFM IS high;
-//	RULE 21 : IF NM IS high AND FoC IS high AND NF IS med THEN VIFM IS high;
-//	RULE 22 : IF NM IS high AND FoC IS high AND NF IS high THEN VIFM IS high;
+	RULE 2 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS high THEN VIFM IS med;
+	RULE 3 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN VIFM IS low;
+	RULE 4 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS med AND NGXOr IS med AND NGOr IS high THEN VIFM IS high;
+	RULE 5 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS high;
+	RULE 6 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS med THEN VIFM IS med;
+	RULE 7 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN VIFM IS veryhigh;
+	RULE 8 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;
+	RULE 9 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS high;
+	RULE 10 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS low AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;
+	RULE 11 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN VIFM IS high;
+	RULE 12 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN VIFM IS low;	
+	RULE 13 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS med AND NGOr IS high THEN VIFM IS low;
+	RULE 14 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN VIFM IS low;
+	RULE 15 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS med THEN VIFM IS med;
+	RULE 16 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN VIFM IS high;
+	RULE 17 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS med THEN VIFM IS low;	
+	RULE 18 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN VIFM IS veryhigh;		
+	RULE 19 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN VIFM IS med;	
+	RULE 20 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN VIFM IS low;		
+	RULE 21 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;	
+	RULE 22 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;	
+	RULE 23 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS veryhigh;
+	RULE 24 : IF NM IS med AND FEX IS high AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN VIFM IS med;
+	RULE 25 : IF NM IS med AND FEX IS high AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;
+	RULE 26 : IF NM IS med AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS high;	
+	RULE 27 : IF NM IS med AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN VIFM IS med;
+	RULE 28 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS veryhigh;
+	RULE 29 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;		
+	RULE 30 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN VIFM IS verylow;
+	RULE 31 : IF NM IS med AND FEX IS low AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN VIFM IS low;
+	RULE 32 : IF NM IS med AND FEX IS low AND SCDF IS med AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN VIFM IS med;
+	RULE 33 : IF NM IS high AND FEX IS low AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN VIFM IS low;
+	RULE 34 : IF NM IS high AND FEX IS low AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN VIFM IS veryhigh;
+	RULE 35 : IF NM IS high AND FEX IS med AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN VIFM IS verylow;
+	RULE 36 : IF NM IS high AND FEX IS med AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN VIFM IS med;
+	RULE 37 : IF NM IS high AND FEX IS med AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS high THEN VIFM IS med;
+	RULE 38 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN VIFM IS veryhigh;
+	RULE 39 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS low THEN VIFM IS veryhigh;
 
 
 END_RULEBLOCK
