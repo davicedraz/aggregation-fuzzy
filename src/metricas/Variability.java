@@ -56,8 +56,8 @@ public class Variability {
 	    for( Rule r : fis.getFunctionBlock("variability_index").getFuzzyRuleBlock("No1").getRules() )
 	      System.out.println(r);
 		
-		Variable tip = fb.getVariable("VIFM");
-		JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+		Variable newMeasure = fb.getVariable("VIFM");
+		JFuzzyChart.get().chart(newMeasure, newMeasure.getDefuzzifier(), true);
 		
 	}
 

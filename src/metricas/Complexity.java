@@ -56,8 +56,8 @@ public class Complexity {
 	    for( Rule r : fis.getFunctionBlock("complexity_index").getFuzzyRuleBlock("No1").getRules() )
 	      System.out.println(r);
 		
-		Variable tip = fb.getVariable("CIFM");
-		JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+		Variable newMeasure = fb.getVariable("CIFM");
+		JFuzzyChart.get().chart(newMeasure, newMeasure.getDefuzzifier(), true);
 		
 	}
 

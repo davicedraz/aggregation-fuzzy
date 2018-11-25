@@ -57,8 +57,8 @@ public class Size {
 	    for( Rule r : fis.getFunctionBlock("size_index").getFuzzyRuleBlock("No1").getRules() )
 	      System.out.println(r);
 		
-		Variable tip = fb.getVariable("SIFM");
-		JFuzzyChart.get().chart(tip, tip.getDefuzzifier(), true);
+		Variable newMeasure = fb.getVariable("SIFM");
+		JFuzzyChart.get().chart(newMeasure, newMeasure.getDefuzzifier(), true);
 	
 	}
 
