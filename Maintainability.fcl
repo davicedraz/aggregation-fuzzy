@@ -1,6 +1,6 @@
 FUNCTION_BLOCK maitainability_index	// Block definition (there may be more than one block per file)
 
-VAR_INPUT				// Define input variables
+VAR_INPUT				// Define input measures
 	NF : REAL;
 	NM : REAL;
 	NTop : REAL;
@@ -18,7 +18,7 @@ VAR_INPUT				// Define input variables
 	NGXOr : REAL;
 END_VAR
 
-VAR_OUTPUT				// Define output variable
+VAR_OUTPUT				// Define output measure
 	MIFM : REAL;
 END_VAR
 
