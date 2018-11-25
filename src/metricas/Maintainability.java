@@ -3,7 +3,6 @@ package metricas;
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
 import net.sourceforge.jFuzzyLogic.plot.JFuzzyChart;
-import net.sourceforge.jFuzzyLogic.rule.Rule;
 import net.sourceforge.jFuzzyLogic.rule.Variable;
 
 public class Maintainability {
@@ -52,12 +51,9 @@ public class Maintainability {
 		System.out.println(fb.getVariable("MIFM").getValue());
 
 		// Show each rule (and degree of support)
-		for( Rule r : fis.getFunctionBlock("maitainability_index").getFuzzyRuleBlock("No1").getRules() )
-			System.out.println(r);
 
 		Variable newMeasure = fb.getVariable("MIFM");
 		JFuzzyChart.get().chart(newMeasure, newMeasure.getDefuzzifier(), true);
-
 	}
 
 }
