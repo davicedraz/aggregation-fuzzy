@@ -30,7 +30,6 @@ FUZZIFY NF // Fuzzify input measure in : {'low', 'med' , 'high'}
 END_FUZZIFY
 
 
-
 DEFUZZIFY SIFM			// Defuzzify output variable 'Size Index' : {'very low', 'low', 'med', 'high', 'very high' }
 
 	TERM verylow := (0,1) (9,1) (10,0);
@@ -41,6 +40,7 @@ DEFUZZIFY SIFM			// Defuzzify output variable 'Size Index' : {'very low', 'low',
 
 	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+	
 END_DEFUZZIFY
 
 RULEBLOCK No1

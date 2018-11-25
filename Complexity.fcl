@@ -12,7 +12,6 @@ VAR_OUTPUT				// Define output variable
 	CIFM : REAL;
 END_VAR
 
-
 FUZZIFY RDen // Fuzzify input measure in : {'low', 'med' , 'high'} 
 	TERM low := (0, 1) (0.5, 1) (0.7, 0); 
 	TERM med := (0.5, 0) (0.7, 1) (1, 0);
@@ -25,14 +24,11 @@ FUZZIFY CogC // Fuzzify input measure in : {'low', 'med' , 'high'}
 	TERM high := (4, 0) (8, 1) (50, 1);
 END_FUZZIFY
 
-FUZZIFY NTop // Fuzzify input measure in : {'low', 'med' , 'high'}  /////verificar 
+FUZZIFY NTop // Fuzzify input measure in : {'low', 'med' , 'high'}
 	TERM low := (0, 1) (3, 1) (5, 0); 
 	TERM med := (3,0) (5, 1) (7, 0);
 	TERM high := (6, 0) (7, 1) (50, 1);
 END_FUZZIFY
-//Low <= 3
-//3 < Med < 6
-//6 < High <= 7
 
 FUZZIFY FoC // Fuzzify input measure in : {'low', 'med' , 'high'}
 	TERM low := (0, 1) (0.2, 1) (0.24, 0); 
@@ -52,6 +48,7 @@ DEFUZZIFY CIFM	// Defuzzify output variable 'Complexity Index' : {'very low', 'l
 
 	METHOD : COG;		// Use 'Center Of Gravity' defuzzification method
 	DEFAULT := 0;		// Default value is 0 (if no rule activates defuzzifier)
+	
 END_DEFUZZIFY
 
 RULEBLOCK No1
@@ -59,31 +56,38 @@ RULEBLOCK No1
 	ACT : MIN;			// Use 'min' activation method
 	ACCU : MAX;			// Use 'max' accumulation method
 
-
 	RULE 1 : IF RDen IS low AND CogC IS low AND NTop IS low AND FoC IS high THEN CIFM IS verylow;
+	RULE 2 : IF RDen IS low AND CogC IS low AND NTop IS med AND FoC IS low THEN CIFM IS med;
+	RULE 3 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN CIFM IS med;
+	RULE 4 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS med THEN CIFM IS med;
+	RULE 5 : IF RDen IS low AND CogC IS med AND NTop IS low AND FoC IS med THEN CIFM IS med;
+	RULE 6 : IF RDen IS low AND CogC IS med AND NTop IS med AND FoC IS med THEN CIFM IS med;
+	RULE 7 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS med THEN CIFM IS med;
+	RULE 8 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS low THEN CIFM IS high;
+	RULE 9 : IF RDen IS low AND CogC IS high AND NTop IS low AND FoC IS high THEN CIFM IS low;
+	RULE 10 : IF RDen IS low AND CogC IS high AND NTop IS low AND FoC IS med THEN CIFM IS med;
+	RULE 11 : IF RDen IS low AND CogC IS high AND NTop IS med AND FoC IS med THEN CIFM IS med;
+	RULE 12 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN CIFM IS low;	
+	RULE 13 : IF RDen IS low AND CogC IS high AND NTop IS high AND FoC IS med THEN CIFM IS high;	
+	RULE 14 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN CIFM IS high;
+	RULE 15 : IF RDen IS med AND CogC IS low AND NTop IS low AND FoC IS med THEN CIFM IS med;
+	RULE 16 : IF RDen IS med AND CogC IS low AND NTop IS low AND FoC IS high THEN CIFM IS low;
+	RULE 17 : IF RDen IS med AND CogC IS med AND NTop IS low AND FoC IS low THEN CIFM IS low;
+	RULE 18 : IF RDen IS med AND CogC IS med AND NTop IS med AND FoC IS med THEN CIFM IS med;
+	RULE 19 : IF RDen IS med AND CogC IS med AND NTop IS med AND FoC IS low THEN CIFM IS high;
+	RULE 20 : IF RDen IS med AND CogC IS med AND NTop IS high AND FoC IS med THEN CIFM IS med;	
+	RULE 21 : IF RDen IS med AND CogC IS high AND NTop IS low AND FoC IS med THEN CIFM IS med;
+	RULE 22 : IF RDen IS med AND CogC IS high AND NTop IS med AND FoC IS med THEN CIFM IS high;
+	RULE 23 : IF RDen IS med AND CogC IS low AND NTop IS high AND FoC IS low THEN CIFM IS high;	
+	RULE 24 : IF RDen IS high AND CogC IS low AND NTop IS low AND FoC IS med THEN CIFM IS low;		
+	RULE 25 : IF RDen IS high AND CogC IS low AND NTop IS med AND FoC IS low THEN CIFM IS med;	
+	RULE 26 : IF RDen IS high AND CogC IS med AND NTop IS low AND FoC IS low THEN CIFM IS med;		
+	RULE 27 : IF RDen IS high AND CogC IS med AND NTop IS med AND FoC IS med THEN CIFM IS med;		
+	RULE 28 : IF RDen IS high AND CogC IS med AND NTop IS high AND FoC IS med THEN CIFM IS high;	
+	RULE 29 : IF RDen IS high AND CogC IS high AND NTop IS low AND FoC IS med THEN CIFM IS high;		
+	RULE 30 : IF RDen IS high AND CogC IS low AND NTop IS med AND FoC IS low THEN CIFM IS veryhigh;	
+	RULE 31 : IF RDen IS high AND CogC IS low AND NTop IS high AND FoC IS low THEN CIFM IS veryhigh;		
 	
-//	RULE 2 : IF NM IS low AND FoC IS med AND NF IS low THEN CIFM IS med;
-//	RULE 3 : IF NM IS low AND FoC IS med AND NF IS med THEN CIFM IS med;
-//	RULE 4 : IF NM IS low AND FoC IS high AND NF IS low THEN CIFM IS veryhigh;
-//	RULE 5 : IF NM IS low AND FoC IS high AND NF IS med THEN CIFM IS veryhigh;
-//	RULE 6 : IF NM IS low AND FoC IS high AND NF IS high THEN CIFM IS veryhigh;
-//	RULE 7 : IF NM IS med AND FoC IS low AND NF IS low THEN CIFM IS low;
-//	RULE 8 : IF NM IS med AND FoC IS low AND NF IS med THEN CIFM IS low;
-//	RULE 9 : IF NM IS med AND FoC IS med AND NF IS low THEN CIFM IS med;
-//	RULE 10 : IF NM IS med AND FoC IS med AND NF IS med THEN CIFM IS med;
-//	RULE 11 : IF NM IS med AND FoC IS high AND NF IS low THEN CIFM IS med;
-//	RULE 12 : IF NM IS med AND FoC IS high AND NF IS med THEN CIFM IS high;
-//	RULE 13 : IF NM IS med AND FoC IS high AND NF IS high THEN CIFM IS high;
-//	RULE 14 : IF NM IS high AND FoC IS low AND NF IS low THEN CIFM IS verylow;
-//	RULE 15 : IF NM IS high AND FoC IS low AND NF IS med THEN CIFM IS verylow;
-//	RULE 16 : IF NM IS high AND FoC IS low AND NF IS high THEN CIFM IS verylow;
-//	RULE 17 : IF NM IS high AND FoC IS med AND NF IS low THEN CIFM IS med;
-//	RULE 18 : IF NM IS high AND FoC IS med AND NF IS med THEN CIFM IS med;
-//	RULE 19 : IF NM IS high AND FoC IS med AND NF IS high THEN CIFM IS med;
-//	RULE 20 : IF NM IS high AND FoC IS high AND NF IS low THEN CIFM IS high;
-//	RULE 21 : IF NM IS high AND FoC IS high AND NF IS med THEN CIFM IS high;
-//	RULE 22 : IF NM IS high AND FoC IS high AND NF IS high THEN CIFM IS high;
-
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
