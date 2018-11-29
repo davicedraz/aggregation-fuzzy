@@ -131,18 +131,18 @@ RULEBLOCK size_rules
 	ACT : MIN;			
 	ACCU : MAX;			
 
-	RULE 1 : IF DTMax IS low AND NLeaf IS low AND NF IS low THEN MIFM IS verylow;
-	RULE 2 : IF DTMax IS med AND NLeaf IS low AND NF IS low THEN MIFM IS low;
-	RULE 3 : IF DTMax IS low AND NLeaf IS med AND NF IS low THEN MIFM IS low;
-	RULE 4 : IF DTMax IS low AND NLeaf IS low AND NF IS med THEN MIFM IS low;
-	RULE 4 : IF DTMax IS high AND NLeaf IS low AND NF IS low THEN MIFM IS low;
+	RULE 1 : IF DTMax IS low AND NLeaf IS low AND NF IS low THEN MIFM IS veryhigh;
+	RULE 2 : IF DTMax IS med AND NLeaf IS low AND NF IS low THEN MIFM IS high;
+	RULE 3 : IF DTMax IS low AND NLeaf IS med AND NF IS low THEN MIFM IS high;
+	RULE 4 : IF DTMax IS low AND NLeaf IS low AND NF IS med THEN MIFM IS high;
+	RULE 4 : IF DTMax IS high AND NLeaf IS low AND NF IS low THEN MIFM IS high;
 	RULE 6 : IF DTMax IS low AND NLeaf IS med AND NF IS high THEN MIFM IS med;
 	RULE 7 : IF DTMax IS med AND NLeaf IS low AND NF IS med THEN MIFM IS med;
 	RULE 8 : IF DTMax IS med AND NLeaf IS med AND NF IS med THEN MIFM IS med;
 	RULE 9 : IF DTMax IS high AND NLeaf IS med AND NF IS med THEN MIFM IS med;
-	RULE 10 : IF DTMax IS med AND NLeaf IS high AND NF IS med THEN MIFM IS high;
-	RULE 11 : IF DTMax IS med AND NLeaf IS high AND NF IS high THEN MIFM IS high;
-	RULE 10 : IF DTMax IS high AND NLeaf IS high AND NF IS high THEN MIFM IS veryhigh;
+	RULE 10 : IF DTMax IS med AND NLeaf IS high AND NF IS med THEN MIFM IS low;
+	RULE 11 : IF DTMax IS med AND NLeaf IS high AND NF IS high THEN MIFM IS low;
+	RULE 10 : IF DTMax IS high AND NLeaf IS high AND NF IS high THEN MIFM IS verylow;
 
 
 END_RULEBLOCK
@@ -152,37 +152,37 @@ RULEBLOCK complexity_rules
 	ACT : MIN;			// Use 'min' activation method
 	ACCU : MAX;			// Use 'max' accumulation method
 
-	RULE 1 : IF RDen IS low AND CogC IS low AND NTop IS low AND FoC IS high THEN MIFM IS verylow;
+	RULE 1 : IF RDen IS low AND CogC IS low AND NTop IS low AND FoC IS high THEN MIFM IS veryhigh;
 	RULE 2 : IF RDen IS low AND CogC IS low AND NTop IS med AND FoC IS low THEN MIFM IS med;
 	RULE 3 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS med;
 	RULE 4 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS med THEN MIFM IS med;
 	RULE 5 : IF RDen IS low AND CogC IS med AND NTop IS low AND FoC IS med THEN MIFM IS med;
 	RULE 6 : IF RDen IS low AND CogC IS med AND NTop IS med AND FoC IS med THEN MIFM IS med;
 	RULE 7 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS med THEN MIFM IS med;
-	RULE 8 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS low THEN MIFM IS high;
-	RULE 9 : IF RDen IS low AND CogC IS high AND NTop IS low AND FoC IS high THEN MIFM IS low;
+	RULE 8 : IF RDen IS low AND CogC IS med AND NTop IS high AND FoC IS low THEN MIFM IS low;
+	RULE 9 : IF RDen IS low AND CogC IS high AND NTop IS low AND FoC IS high THEN MIFM IS high;
 	RULE 10 : IF RDen IS low AND CogC IS high AND NTop IS low AND FoC IS med THEN MIFM IS med;
 	RULE 11 : IF RDen IS low AND CogC IS high AND NTop IS med AND FoC IS med THEN MIFM IS med;
-	RULE 12 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS low;	
-	RULE 13 : IF RDen IS low AND CogC IS high AND NTop IS high AND FoC IS med THEN MIFM IS high;	
-	RULE 14 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS high;
+	RULE 12 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS high;	
+	RULE 13 : IF RDen IS low AND CogC IS high AND NTop IS high AND FoC IS med THEN MIFM IS low;	
+	RULE 14 : IF RDen IS low AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS low;
 	RULE 15 : IF RDen IS med AND CogC IS low AND NTop IS low AND FoC IS med THEN MIFM IS med;
 	RULE 16 : IF RDen IS med AND CogC IS low AND NTop IS low AND FoC IS high THEN MIFM IS low;
-	RULE 17 : IF RDen IS med AND CogC IS med AND NTop IS low AND FoC IS low THEN MIFM IS low;
+	RULE 17 : IF RDen IS med AND CogC IS med AND NTop IS low AND FoC IS low THEN MIFM IS high;
 	RULE 18 : IF RDen IS med AND CogC IS med AND NTop IS med AND FoC IS med THEN MIFM IS med;
-	RULE 19 : IF RDen IS med AND CogC IS med AND NTop IS med AND FoC IS low THEN MIFM IS high;
+	RULE 19 : IF RDen IS med AND CogC IS med AND NTop IS med AND FoC IS low THEN MIFM IS low;
 	RULE 20 : IF RDen IS med AND CogC IS med AND NTop IS high AND FoC IS med THEN MIFM IS med;	
 	RULE 21 : IF RDen IS med AND CogC IS high AND NTop IS low AND FoC IS med THEN MIFM IS med;
-	RULE 22 : IF RDen IS med AND CogC IS high AND NTop IS med AND FoC IS med THEN MIFM IS high;
-	RULE 23 : IF RDen IS med AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS high;	
-	RULE 24 : IF RDen IS high AND CogC IS low AND NTop IS low AND FoC IS med THEN MIFM IS low;		
+	RULE 22 : IF RDen IS med AND CogC IS high AND NTop IS med AND FoC IS med THEN MIFM IS low;
+	RULE 23 : IF RDen IS med AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS low;	
+	RULE 24 : IF RDen IS high AND CogC IS low AND NTop IS low AND FoC IS med THEN MIFM IS high;		
 	RULE 25 : IF RDen IS high AND CogC IS low AND NTop IS med AND FoC IS low THEN MIFM IS med;	
 	RULE 26 : IF RDen IS high AND CogC IS med AND NTop IS low AND FoC IS low THEN MIFM IS med;		
 	RULE 27 : IF RDen IS high AND CogC IS med AND NTop IS med AND FoC IS med THEN MIFM IS med;		
-	RULE 28 : IF RDen IS high AND CogC IS med AND NTop IS high AND FoC IS med THEN MIFM IS high;	
-	RULE 29 : IF RDen IS high AND CogC IS high AND NTop IS low AND FoC IS med THEN MIFM IS high;		
-	RULE 30 : IF RDen IS high AND CogC IS low AND NTop IS med AND FoC IS low THEN MIFM IS veryhigh;	
-	RULE 31 : IF RDen IS high AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS veryhigh;
+	RULE 28 : IF RDen IS high AND CogC IS med AND NTop IS high AND FoC IS med THEN MIFM IS low;	
+	RULE 29 : IF RDen IS high AND CogC IS high AND NTop IS low AND FoC IS med THEN MIFM IS low;		
+	RULE 30 : IF RDen IS high AND CogC IS low AND NTop IS med AND FoC IS low THEN MIFM IS verylow;	
+	RULE 31 : IF RDen IS high AND CogC IS low AND NTop IS high AND FoC IS low THEN MIFM IS verylow;
 
 END_RULEBLOCK
 
@@ -191,45 +191,45 @@ RULEBLOCK variability_rules
 	ACT : MIN;			// Use 'min' activation method
 	ACCU : MAX;			// Use 'max' accumulation method
 
-	RULE 1 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS veryhigh;
+	RULE 1 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS verylow;
 	RULE 2 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS high THEN MIFM IS med;
-	RULE 3 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN MIFM IS low;
-	RULE 4 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS med AND NGXOr IS med AND NGOr IS high THEN MIFM IS high;
-	RULE 5 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS high;
+	RULE 3 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN MIFM IS high;
+	RULE 4 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS med AND NGXOr IS med AND NGOr IS high THEN MIFM IS low;
+	RULE 5 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS low;
 	RULE 6 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS med THEN MIFM IS med;
-	RULE 7 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS veryhigh;
+	RULE 7 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS verylow;
 	RULE 8 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;
-	RULE 9 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS high;
+	RULE 9 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS low;
 	RULE 10 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS low AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;
-	RULE 11 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS high;
-	RULE 12 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS low;	
-	RULE 13 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS med AND NGOr IS high THEN MIFM IS low;
-	RULE 14 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS low;
+	RULE 11 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS low;
+	RULE 12 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS high;	
+	RULE 13 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS med AND NGOr IS high THEN MIFM IS high;
+	RULE 14 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS low AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS high;
 	RULE 15 : IF NM IS low AND FEX IS high AND SCDF IS low AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS med THEN MIFM IS med;
-	RULE 16 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS high;
+	RULE 16 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS high AND NGOr IS high THEN MIFM IS low;
 	RULE 17 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS med THEN MIFM IS low;	
-	RULE 18 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS veryhigh;		
+	RULE 18 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS verylow;		
 	RULE 19 : IF NM IS low AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN MIFM IS med;	
-	RULE 20 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN MIFM IS low;		
+	RULE 20 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN MIFM IS high;		
 	RULE 21 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;	
 	RULE 22 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;	
-	RULE 23 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS veryhigh;
+	RULE 23 : IF NM IS med AND FEX IS high AND SCDF IS med AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS verylow;
 	RULE 24 : IF NM IS med AND FEX IS high AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS low AND NGOr IS low THEN MIFM IS med;
 	RULE 25 : IF NM IS med AND FEX IS high AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;
-	RULE 26 : IF NM IS med AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS high;	
+	RULE 26 : IF NM IS med AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS low;	
 	RULE 27 : IF NM IS med AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN MIFM IS med;
-	RULE 28 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS veryhigh;
+	RULE 28 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS verylow;
 	RULE 29 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;		
-	RULE 30 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN MIFM IS verylow;
-	RULE 31 : IF NM IS med AND FEX IS low AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN MIFM IS low;
+	RULE 30 : IF NM IS med AND FEX IS low AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN MIFM IS veryhigh;
+	RULE 31 : IF NM IS med AND FEX IS low AND SCDF IS med AND MCDF IS med AND RoV IS low AND NVC IS low AND NGXOr IS med AND NGOr IS low THEN MIFM IS high;
 	RULE 32 : IF NM IS med AND FEX IS low AND SCDF IS med AND MCDF IS med AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS med THEN MIFM IS med;
 	RULE 33 : IF NM IS high AND FEX IS low AND SCDF IS low AND MCDF IS low AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN MIFM IS low;
-	RULE 34 : IF NM IS high AND FEX IS low AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS veryhigh;
-	RULE 35 : IF NM IS high AND FEX IS med AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN MIFM IS verylow;
+	RULE 34 : IF NM IS high AND FEX IS low AND SCDF IS low AND MCDF IS low AND RoV IS high AND NVC IS high AND NGXOr IS low AND NGOr IS high THEN MIFM IS verylow;
+	RULE 35 : IF NM IS high AND FEX IS med AND SCDF IS low AND MCDF IS low AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN MIFM IS veryhigh;
 	RULE 36 : IF NM IS high AND FEX IS med AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS med AND NGOr IS med THEN MIFM IS med;
 	RULE 37 : IF NM IS high AND FEX IS med AND SCDF IS med AND MCDF IS med AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS high THEN MIFM IS med;
-	RULE 38 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN MIFM IS veryhigh;
-	RULE 39 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS low THEN MIFM IS veryhigh;
+	RULE 38 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS low AND NVC IS low AND NGXOr IS high AND NGOr IS low THEN MIFM IS verylow;
+	RULE 39 : IF NM IS high AND FEX IS med AND SCDF IS high AND MCDF IS high AND RoV IS med AND NVC IS med AND NGXOr IS high AND NGOr IS low THEN MIFM IS verylow;
 
 END_RULEBLOCK
 

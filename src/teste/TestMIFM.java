@@ -29,6 +29,8 @@ public class TestMIFM {
 		fb.setVariable("NF", 29);	fb.setVariable("NM", 18);	fb.setVariable("NTop", 9);		fb.setVariable("NLeaf", 20);	fb.setVariable("DTMax", 4);		fb.setVariable("CogC", 3);		fb.setVariable("FEX", 20);		fb.setVariable("FoC", 0.13);		fb.setVariable("SCDF", 0);		fb.setVariable("MCDF", 0);		fb.setVariable("RDen", 0);		fb.setVariable("RoV", 2.58);		fb.setVariable("NVC", 360);		fb.setVariable("NGOr", 3);		fb.setVariable("NGXOr", 0);		fb.evaluate();		System.out.println("SWAMP Platform: " + fb.getVariable("MIFM").getValue());
 		fb.setVariable("NF", 34);	fb.setVariable("NM", 5);	fb.setVariable("NTop", 7);		fb.setVariable("NLeaf", 24);	fb.setVariable("DTMax", 5);		fb.setVariable("CogC", 8);		fb.setVariable("FEX", 26);		fb.setVariable("FoC", 0.11);		fb.setVariable("SCDF", 2);		fb.setVariable("MCDF", 0);		fb.setVariable("RDen", 1);		fb.setVariable("RoV", 2.27);		fb.setVariable("NVC", 267840);	fb.setVariable("NGOr", 3);		fb.setVariable("NGXOr", 5);		fb.evaluate();		System.out.println("Text To Speech App: " + fb.getVariable("MIFM").getValue());
 
+		System.out.println("Mobile Game: " + fb.getVariable("MIFM").getValue());
+
 	}
 
 }

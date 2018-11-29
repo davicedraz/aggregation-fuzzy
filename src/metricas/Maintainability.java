@@ -22,24 +22,11 @@ public class Maintainability {
 
 		JFuzzyChart.get().chart(fb);
 
-		// Set inputs for the FM - Mobile Game
+//		fb.setVariable("NF", 43);	fb.setVariable("NM", 22);	fb.setVariable("NTop", 3);		fb.setVariable("NLeaf", 32);	fb.setVariable("DTMax", 4);		fb.setVariable("CogC", 5);		fb.setVariable("FEX", 32);		fb.setVariable("FoC", 0.13);		fb.setVariable("SCDF", 0);		fb.setVariable("MCDF", 0);		fb.setVariable("RDen", 0);		fb.setVariable("RoV", 2.93);		fb.setVariable("NVC", 23040);	fb.setVariable("NGOr", 4);		fb.setVariable("NGXOr", 1);		fb.evaluate();
 
-		fb.setVariable("NF", 22);
-		fb.setVariable("NM", 2);
-		fb.setVariable("NTop", 11);
-		fb.setVariable("NLeaf", 15);
-		fb.setVariable("DTMax", 5);
-		fb.setVariable("CogC", 5);
-		fb.setVariable("FEX", 8);
-		fb.setVariable("FoC", 0.227272727272727);
-		fb.setVariable("SCDF", 6);
-		fb.setVariable("MCDF", 2);
-		fb.setVariable("RDen", 1.66666666666667);
-		fb.setVariable("RoV", 2.16666666666667);
-		fb.setVariable("NVC", 28);
-		fb.setVariable("NGOr", 2);
-		fb.setVariable("NGXOr", 3);
+		fb.setVariable("NF", 10);	fb.setVariable("NM", 3);	fb.setVariable("NTop", 4);		fb.setVariable("NLeaf", 7);		fb.setVariable("DTMax", 3);		fb.setVariable("CogC", 2);		fb.setVariable("FEX", 7);		fb.setVariable("FoC", 0.1);			fb.setVariable("SCDF", 0);		fb.setVariable("MCDF", 0);		fb.setVariable("RDen", 0);		fb.setVariable("RoV", 2.2);			fb.setVariable("NVC", 28);		fb.setVariable("NGOr", 1);		fb.setVariable("NGXOr", 1);		fb.evaluate();
 
+		
 		// Evaluate
 		fb.evaluate();
 
